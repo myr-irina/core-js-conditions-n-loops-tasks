@@ -39,9 +39,17 @@ console.log(isPositive(10));
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  if (a > b && a > c) {
+    return a;
+  }
+  if (b > a && b > c) {
+    return b;
+  }
+  return c;
 }
+
+console.log(getMaxNumber(1, 2, 3));
 
 /**
  * Checks if a queen can capture a king in the next move on an 8x8 chessboard.
