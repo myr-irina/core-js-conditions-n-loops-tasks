@@ -120,9 +120,29 @@ console.log(isIsoscelesTriangle(2, 2, 5));
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  if (num < 1 || num > 39) {
+    throw new Error('Number must be between 1 and 39');
+  }
+
+  const romanSymbols = ['I', 'IV', 'V', 'IX', 'X', 'XL'];
+  const values = [1, 4, 5, 9, 10, 40];
+
+  let result = '';
+
+  let remainingValue = num;
+
+  for (let i = romanSymbols.length - 1; i >= 0; i -= 1) {
+    while (remainingValue >= values[i]) {
+      remainingValue -= values[i];
+      result += romanSymbols[i];
+    }
+  }
+
+  return result;
 }
+
+console.log(convertToRomanNumerals(1));
 
 /**
  * Converts a number to a string, replacing digits with words.
@@ -155,9 +175,14 @@ function convertNumberToString(/* numberStr */) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  for (let i = 0; i < Math.floor(str.length / 2); i += 1) {
+    if (str[i] !== str[str.length - i - 1]) return false;
+  }
+  return true;
 }
+
+console.log(isPalindrome('qweqwe'));
 
 /**
  * Finds the first occurrence of a letter in a string.
