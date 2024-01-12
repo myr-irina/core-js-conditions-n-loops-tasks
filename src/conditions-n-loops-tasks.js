@@ -173,9 +173,19 @@ function isPalindrome(/* str */) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  let ind = -1;
+
+  for (let index = 0; index < str.length; index += 1) {
+    if (str[index] === letter) {
+      ind = index;
+    }
+  }
+
+  return ind;
 }
+
+console.log(getIndexOf('qwerty', 'q'));
 
 /**
  * Checks if a number contains a specific digit.
