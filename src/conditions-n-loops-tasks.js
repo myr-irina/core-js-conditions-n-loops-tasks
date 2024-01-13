@@ -159,9 +159,60 @@ console.log(convertToRomanNumerals(1));
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  const digitWords = {
+    0: 'zero',
+    1: 'one',
+    2: 'two',
+    3: 'three',
+    4: 'four',
+    5: 'five',
+    6: 'six',
+    7: 'seven',
+    8: 'eight',
+    9: 'nine',
+  };
+
+  let outputStr = '';
+  for (let i = 0; i < numberStr.length; i += 1) {
+    const char = numberStr[i];
+
+    switch (char) {
+      case '-':
+        outputStr += 'minus ';
+        break;
+      case '.':
+      case ',':
+        outputStr += 'point ';
+        break;
+      default: {
+        const digit = +char;
+        if (!Number.isNaN(digit)) {
+          outputStr += `${digitWords[digit]} `;
+        }
+      }
+    }
+  }
+
+  let start = 0;
+  while (start < outputStr.length && outputStr[start] === ' ') {
+    start += 1;
+  }
+
+  let end = outputStr.length - 1;
+  while (end >= 0 && outputStr[end] === ' ') {
+    end -= 1;
+  }
+
+  let finalOutput = '';
+  for (let i = start; i <= end; i += 1) {
+    finalOutput += outputStr[i];
+  }
+
+  return finalOutput;
 }
+
+console.log(convertNumberToString('-10.5'));
 
 /**
  * Determines whether a string is a palindrome.
